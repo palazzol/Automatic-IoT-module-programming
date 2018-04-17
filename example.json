@@ -1,0 +1,134 @@
+{
+  "things": [
+    {
+      "//": "x  commons-ground-sensor-cluster  atmosphere-sensor-cluster  x  5C:CF:7F:63:3C:24  esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M  i3/inside/commons/ground-sensor-cluster",
+      "//": "x  commons-ceiling-sensor-cluster  atmosphere-sensor-cluster  x  EC:FA:BC:0E:A6:BC  esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M  i3/inside/commons/ceiling-sensor-cluster",
+      "//": "x  fablab-sensor-cluster  atmosphere-sensor-cluster  x  5C:CF:7F:62:D2:B5  esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M  i3/inside/fablab/sensor-cluster",
+      "type": "custom",
+      "code": "atmosphere-sensor-cluster",
+      "devices": [
+         {
+           "name": "commons-ground-sensor-cluster",
+           "mac": "5C:CF:7F:63:3C:24",
+           "ip": "",
+           "topic": "i3/inside/commons/ground-sensor-cluster"
+         },
+         {
+           "name": "commons-ceiling-sensor-cluster",
+           "mac": "EC:FA:BC:0E:A6:BC",
+           "ip": "",
+           "topic": "i3/inside/commons/ceiling-sensor-cluster"
+         },
+         {
+           "name": "fablab-sensor-cluster",
+           "mac": "5C:CF:7F:62:D2:B5",
+           "ip": "",
+           "topic": "i3/inside/fablab/sensor-cluster"
+         }
+      ],
+      "board": "d1_mini",
+      "flash_def": "4M1M"
+    },
+    {
+      "//": " 002  laser-control-buttons-ID  multi-topic-button  x  5C:CF:7F:63:38:27  esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M  i3/inside/laser-zone/laser-control-buttons-ID  -DTOPIC_0_TOPIC=\"i3/inside/laser-zone/vent-fan\" -DTOPIC_0_ON_PIN=0 -DTOPIC_0_OFF_PIN=2 -DTOPIC_0_TOGGLE_PIN=-1 -DTOPIC_0_LED_ON=5 -DTOPIC_0_LED_OFF=12 -DTOPIC_1_TOPIC=\"i3/inside/infrastructure/air-compressor\" -DTOPIC_1_ON_PIN=4 -DTOPIC_1_OFF_PIN=-1 -DTOPIC_1_TOGGLE_PIN=-1 -DTOPIC_1_LED_ON=13 -DTOPIC_1_LED_OFF=-1",
+      "type": "custom",
+      "code": "multi-topic-button",
+      "devices": [
+         {
+           "name": "laser-control-buttons-%id%",
+           "mac": "5C:CF:7F:63:38:27",
+           "ip": "",
+           "topic": "i3/inside/laser-zone/laser-control-buttons-ID",
+           "defines": {
+             "TOPIC_0_TOPIC": "\"i3/inside/laser-zone-vent-fan\"",
+             "TOPIC_0_ON_PIN": 0,
+             "TOPIC_0_OFF_PIN": 2,
+             "TOPIC_0_TOGGLE_PIN": -1,
+             "TOPIC_0_LED_ON": 5,
+             "TOPIC_0_LED_OFF": 12,
+             "TOPIC_1_TOPIC": "\"i3/inside/infrastructure/air-compressor\"",
+             "TOPIC_1_ON_PIN": 4,
+             "TOPIC_1_OFF_PIN": -1,
+             "TOPIC_1_TOGGLE_PIN": -1,
+             "TOPIC_1_LED_ON": 13,
+             "TOPIC_1_LED_OFF": -1
+           }
+         }
+      ],
+      "board": "d1_mini",
+      "flash_def": "4M1M"
+    },
+    {
+      "//": "x  weld-zone-light-button  multi-topic-button  x  5C:CF:7F:FA:45:22  esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M  i3/inside/lights/028-button  -DTOPIC_0_TOPIC=\"i3/inside/lights/028\"",
+      "type": "custom",
+      "code": "multi-topic-button",
+      "devices": [
+         {
+           "name": "weld-zone-light-button",
+           "mac": "5C:CF:7F:FA:45:22",
+           "ip": "",
+           "topic": "i3/inside/lights/028-button",
+           "defines": {
+             "TOPIC_0_TOPIC": "\"i3/inside/lights/028\""
+           }
+         }
+      ],
+      "board": "nodemcuv2",
+      "flash_def": "4M1M"
+    },
+    {
+      "//": "001  SONOFF_BASIC  10.13.107.133  5C:CF:7F:1B:D4:CA  lights/east  1  %prefix%/i3/inside/%topic%/  light %id%  lights/%id%",
+      "//": "002  SONOFF_BASIC  10.13.107.78  5C:CF:7F:1B:CF:BC  lights/east  1  %prefix%/i3/inside/%topic%/  light %id%  lights/%id%",
+      "type": "tasmota",
+      "devices": [
+        {
+          "id": "001",
+          "mac": "5C:CF:7F:1B:D4:CA",
+          "ip": "10.13.107.133"
+        },
+        {
+          "name": "002",
+          "mac": "5C:CF:7F:1B:CF:BC",
+          "ip": "10.13.107.78"
+        }
+      ],
+      "board": "SONOFF_BASIC",
+      "tasmota": {
+        "poweronState": 1,
+        "friendlyName": "light %id%"
+      },
+      "mqtt": {
+        "topic": "lights/%id%",
+        "fulltopic": "%prefix%/i3/inside/%topic%/",
+        "groupTopic": "lights/east"
+      }
+    },
+    {
+       "//": "xxx  SONOFF_TOUCH  x  60:01:94:86:C6:05  none  0  %prefix%/i3/inside/%topic%/  hallway west lightswitch  hallway/lightswitch-west",
+       "//": "mosquitto_pub -t \"cmnd/i3/inside/hallway/lightswitch-west/buttontopic\" -m \"hallway/light\"",
+      "type": "tasmota",
+      "devices": [
+         {
+           "id": "001",
+           "mac": "60:01:94:86:C6:05",
+           "ip": ""
+         }
+      ],
+      "board": "SONOFF_TOUCH",
+      "tasmota": {
+        "poweronState": 0,
+        "friendlyName": "hallway west lightswitch",
+        "commands": [
+          {
+            "command": "buttontopic",
+            "payload": "hallway/light"
+          }
+        ]
+      },
+      "mqtt": {
+        "topic": "hallway/lightswitch-west",
+        "fulltopic": "%prefix%/i3/inside/%topic%/"
+      }
+    }
+  ]
+}
