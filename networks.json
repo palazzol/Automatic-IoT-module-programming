@@ -1,0 +1,12 @@
+{
+		"i3": {
+				"ssid": "i3detroit-iot",
+				"pass": "securityrisk",
+				"mqtt_host": "10.13.0.22"
+		},
+		"mark": {
+				"ssid": "node42",
+				"pass": "we do what we must, because we can",
+				"mqtt_host": "192.168.1.4"
+		}
+}

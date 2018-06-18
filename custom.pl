@@ -3,6 +3,9 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 use Switch;
+use JSON::Parse 'json_file_to_perl';
+
+my $networks = json_file_to_perl ('networks.json');
 
 my $arduinoDir = "../esp-arduino";
 
@@ -51,7 +54,7 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($id, $name, $type, $ip, $mac, $fqbn, $topic, $buildFlags) = split(/\t/,$_);
+  my ($id, $location, $name, $type, $ip, $mac, $fqbn, $topic, $buildFlags) = split(/\t/,$_);
 
   if( ! length $name > 0) {
     print color("red"), "Hit a blank line\n", color("reset");
@@ -62,7 +65,14 @@ while (<>) {
   $topic =~ s/ID/$id/;
 
   my $buildCommand;
-  $buildFlags = "-DWIFI_SSID=\\\"i3detroit-iot\\\" -DWIFI_PASSWORD=\\\"securityrisk\\\" $buildFlags";
+
+  my $ssid = $networks->{$location}->{'ssid'};
+  my $wifi_pass = $networks->{$location}->{'pass'};
+  my $mqtt_host = $networks->{$location}->{'mqtt_host'};
+  $wifi_pass =~ s/ /\\ /g;
+
+  $buildFlags = "-DWIFI_SSID=\\\"$ssid\\\" -DWIFI_PASSWORD=\\\"$wifi_pass\\\" -DMQTT_SERVER=\\\"$mqtt_host\\\" $buildFlags";
+
   if($type eq "unique") {
     print "building '$name'\n";
     my $codeDir = "../custom-mqtt-programs/$name";
