@@ -69,9 +69,8 @@ while (<>) {
   my $ssid = $networks->{$location}->{'ssid'};
   my $wifi_pass = $networks->{$location}->{'pass'};
   my $mqtt_host = $networks->{$location}->{'mqtt_host'};
-  $wifi_pass =~ s/ /\\ /g;
 
-  $buildFlags = "-DWIFI_SSID=\\\"$ssid\\\" -DWIFI_PASSWORD=\\\"$wifi_pass\\\" -DMQTT_SERVER=\\\"$mqtt_host\\\" $buildFlags";
+  $buildFlags = "'-DWIFI_SSID=\\\"$ssid\\\"' '-DWIFI_PASSWORD=\\\"$wifi_pass\\\"' '-DMQTT_SERVER=\\\"$mqtt_host\\\"' $buildFlags";
 
   if($type eq "unique") {
     print "building '$name'\n";
@@ -82,7 +81,7 @@ while (<>) {
     print "building '$name' with '$type' directory\n";
     my $codeDir = "../custom-mqtt-programs/$type";
 
-    $buildFlags = "-DNAME=\\\"$name\\\" -DTOPIC=\\\"$topic\\\" $buildFlags";
+    $buildFlags = "'-DNAME=\\\"$name\\\"' '-DTOPIC=\\\"$topic\\\"' $buildFlags";
 
     $buildCommand = buildCommand($fqbn, "$codeDir/$type.ino", $buildFlags);
   }
