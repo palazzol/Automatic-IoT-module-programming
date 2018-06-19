@@ -1,5 +1,4 @@
 ID	location name	type	ip	mac	fqbn topic [build flags]
-x	mark	living-room-atmosphere	atmosphere-sensor-cluster	192.168.1.192	68:C6:3A:D6:3A:BB	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/inside/living-room/atmosphere-sensor
 
 x	i3	16seg	unique	10.13.0.135	18:FE:34:99:B0:F1	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 east	i3	commons-light-switches-%id%	commons-light-switches	x	5C:CF:7F:FA:48:65	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/light-switches-%id%
@@ -31,3 +30,8 @@ x	i3	fablab-control-buttons	multi-topic-button	x	18:FE:34:D2:33:85	esp8266:esp82
 x	i3	office-thermostat	thermostat	x	5C:CF:7F:63:30:67	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/office/thermostat
 x	i3	wolverine-status-lights	laser-cutter-status-lights	10.13.107.246	ec:fa:bc:0e:b1:37	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/laser-zone/wolverine/status_lights	-DDEVICE=wolverine -DESP8266
 x	i3	bumblebee-status-lights	laser-cutter-status-lights	10.13.107.90	2c:3a:e8:32:8c:a2	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/laser-zone/bumblebee/status_lights	-DDEVICE="bumblebee" -DESP8266
+
+
+
+x	mark	bedroom-atmosphere	atmosphere-sensor-cluster	192.168.1.193	B4:E6:2D:23:28:4B	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/inside/bedroom/atmosphere-sensor
+x	mark	living-room-atmosphere	atmosphere-sensor-cluster	192.168.1.192	68:C6:3A:D6:3A:BB	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/inside/living-room/atmosphere-sensor
