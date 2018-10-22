@@ -33,5 +33,5 @@ x	i3	bumblebee-status-lights	laser-cutter-status-lights	10.13.107.90	2c:3a:e8:32
 
 
 
-x	mark	bedroom-atmosphere	atmosphere-sensor-cluster	192.168.1.193	B4:E6:2D:23:28:4B	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/inside/bedroom/atmosphere-sensor
-x	mark	living-room-atmosphere	atmosphere-sensor-cluster	192.168.1.192	68:C6:3A:D6:3A:BB	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/inside/living-room/atmosphere-sensor
+x	mark	bedroom-atmosphere	atmosphere-sensor-cluster	192.168.1.193	B4:E6:2D:23:28:4B	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/bedroom/atmosphere-sensor
+x	mark	living-room-atmosphere	atmosphere-sensor-cluster	192.168.1.192	68:C6:3A:D6:3A:BB	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	mark/living-room/atmosphere-sensor
