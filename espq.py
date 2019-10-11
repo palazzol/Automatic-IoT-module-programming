@@ -2,6 +2,8 @@ import os
 import sys
 import json
 import datetime
+import filecmp
+import shutil
 from re import sub, findall
 from time import sleep
 from copy import deepcopy
@@ -18,7 +20,7 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
-current_tasmota_version = '0x06060000'
+current_tasmota_version = '0x06060007'
 tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
 custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 
@@ -237,7 +239,8 @@ class device(dict):
 
         correctPIO = os.path.join(espqdir, 'platformio.ini')
         tasmotaPIO = os.path.join(tasmotadir, 'platformio.ini')
-        os.system("bash -c 'cmp --silent {cpio} {tpio} || cp {cpio} {tpio}'".format(cpio=correctPIO, tpio=tasmotaPIO))
+        if filecmp.cmp(correctPIO, tasmotaPIO) == False:
+            shutil.copyfile(correctPIO, tasmotaPIO)
 
         os.chdir(tasmotadir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'

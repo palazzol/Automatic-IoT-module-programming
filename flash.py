@@ -4,6 +4,7 @@ import espq
 import sys
 import os
 import re
+import platform
 
 def fmtcols(mylist, cols):
     """
@@ -87,7 +88,7 @@ for count, dev in enumerate(devices, start=1):
                                                                   name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
     # reset terminal title to something useful like hostname
-    sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))
+    sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=platform.uname()[1]))
 
 progress_report(devices)
 print("Done.")
